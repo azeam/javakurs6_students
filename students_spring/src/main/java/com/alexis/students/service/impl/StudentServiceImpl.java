@@ -49,7 +49,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto createStudent(StudentDto studentDtoIn) {
         // name needs to be set, otherwise return 400
-        if (studentDtoIn.getName() == null) {
+        if (studentDtoIn.getName() == null || studentDtoIn.getLastName() == null) {
             throw new ResponseStatusException (
                 HttpStatus.BAD_REQUEST, "No student name set"
             );

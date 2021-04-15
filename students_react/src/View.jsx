@@ -11,7 +11,7 @@ export const View = () => {
     const [studentList, setStudentList] = useState([]);
     const [student, setStudent] = useState();
     
-    const URL = "http://localhost:8080/student";
+    const URL = "http://localhost:8080/student/";
     
     useEffect(() => {
         
@@ -37,28 +37,11 @@ export const View = () => {
         setView('create');
     }
 
-    const mainPage = () => {
+    const mainPage = (response) => {
 
         // back to ListView
-        setView('a');
-    }
-
-    const SaveStudent = (response) => {
-
         setResponse(response);
-        setView('b');
-    }
-
-    const Edit = (response) => {
-
-        setResponse(response);
-        setView('')
-    }
-
-    const Delete = (response) => {
-
-        setResponse(response);
-        setView('d');
+        setView('');
     }
 
     switch(view){
@@ -66,14 +49,14 @@ export const View = () => {
         case 'student':
             return(
                 <div>
-                    <Student name={student.name} lastName={student.lastName} age={student.age} sid={student.sid} btnDelete={Delete} btnEdit={Edit} onClick={() => mainPage()}></Student>
+                    <Student name={student.name} lastName={student.lastName} age={student.age} sid={student.sid} btnDelete={mainPage} btnEdit={mainPage} onClick={() => mainPage()}></Student>
                 </div>
             );
 
         case 'create':
             return(
                 <div>
-                    <CreateStudent btnSave={SaveStudent} btnBack={mainPage}></CreateStudent>
+                    <CreateStudent btnSave={mainPage} btnBack={mainPage}></CreateStudent>
                 </div>
             )
 

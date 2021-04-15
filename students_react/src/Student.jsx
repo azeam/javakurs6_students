@@ -6,6 +6,33 @@ export const Student = (props) => {
     const [lastName, setLastName] = useState(props.lastName)
     const [age, setAge] = useState(props.age)
 
+    const [isChecked, setIsChecked] = useState(props.present)
+    const updateCheck = () => setIsChecked(!isChecked)
+
+    if(isChecked === true){
+        const fetchData = async () => {
+            const response = await fetch(`http://localhost:8080/student/${props.sid}`, {
+                method: "PUT",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    present: true
+                })
+            })
+        }
+        fetchData()
+    }else if(isChecked === false){
+        const fetchData = async () => {
+            const response = await fetch(`http://localhost:8080/student/${props.sid}`, {
+                method: "PUT",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    present: false
+                })
+            })
+        }
+        fetchData()
+    }
+
     const editHandler = (e) => {
         e.preventDefault()
 
@@ -51,7 +78,7 @@ export const Student = (props) => {
             <input className="From" type="text" id="lname" name="lname" onChange={e => setLastName(e.target.value)} value={lastName}></input>
             <label className="From">Age: </label>
             <input className="From" type="text" id="age" name="age" onChange={e => setAge(e.target.value)} value={age}></input>
-            <input className="CheckBox" type="checkbox"></input>
+            <input className="CheckBox" type="checkbox" checked={isChecked} onChange={updateCheck}></input>
             <label >Present</label>
             <button className="From" onClick={editHandler}>Edit</button>
             <button className="From" onClick={deleteHandler}>Delete</button>

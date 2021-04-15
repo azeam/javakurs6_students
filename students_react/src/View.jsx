@@ -49,7 +49,7 @@ export const View = () => {
         case 'student':
             return(
                 <div>
-                    <Student name={student.name} lastName={student.lastName} age={student.age} sid={student.sid} btnDelete={mainPage} btnEdit={mainPage} onClick={() => mainPage()}></Student>
+                    <Student name={student.name} lastName={student.lastName} age={student.age} sid={student.sid} present={student.present} btnDelete={mainPage} btnEdit={mainPage} onClick={() => mainPage()}></Student>
                 </div>
             );
 

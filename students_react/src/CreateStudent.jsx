@@ -5,7 +5,6 @@ export const CreateStudent = (props) => {
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [age, setAge] = useState('');
-    const [sid, setSid] = useState('');
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -18,8 +17,7 @@ export const CreateStudent = (props) => {
                     age: age,
                     lastName: lastName,
                     name: name,
-                    present: false,
-                    sid: sid
+                    present: false
                 })
             })
             const student = await response.json()
@@ -38,8 +36,6 @@ export const CreateStudent = (props) => {
             <input className="From" type="text" id="lname" name="lname" placeholder="Last name..." onChange={e => setLastName(e.target.value)} value={lastName}></input>
             <label className="From">Age: </label>
             <input className="From" type="text" id="age" name="age" placeholder="Age..." onChange={e => setAge(e.target.value)} value={age}></input>
-            <label className="From">Student id: </label>
-            <input className="From" type="text" id="sid" name="sid" placeholder="Student id..." onChange={e => setSid(e.target.value)} value={sid}></input>
             <input type="checkbox"></input>
             <label>Present</label>
             <button className="From" type="submit">Save</button>

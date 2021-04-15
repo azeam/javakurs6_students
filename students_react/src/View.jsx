@@ -1,47 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { StudentList } from './StudentList';
-import { Student } from './Student';
-import { CreateStudent } from './CreateStudent';
-import './View.css';
+import React, { useEffect, useState } from 'react'
+import { StudentList } from './StudentList'
+import { Student } from './Student'
+import { CreateStudent } from './CreateStudent'
+import './View.css'
 
 export const View = () => {
 
-    const [view, setView] = useState('');
+    const [view, setView] = useState('')
     const [response, setResponse] = useState()
-    const [studentList, setStudentList] = useState([]);
-    const [student, setStudent] = useState();
+    const [studentList, setStudentList] = useState([])
+    const [student, setStudent] = useState()
     
-    const URL = "http://localhost:8080/student/";
+    const URL = "http://localhost:8080/student/"
     
     useEffect(() => {
         
         const fetchData = async () => { 
             
-            const response = await fetch(URL);
-            const data = await response.json();
+            const response = await fetch(URL)
+            const data = await response.json()
             setStudentList(data)
         }
-        fetchData();
-    }, [response]);
+        fetchData()
+    }, [response])
 
     const studentPage = (students) => {
 
         // Enters the Student view
-        setStudent(students);
-        setView('student');
+        setStudent(students)
+        setView('student')
     }
 
     const CreatePage = () => {
 
         // Enters the create vies
-        setView('create');
+        setView('create')
     }
 
     const mainPage = (response) => {
 
         // back to ListView
-        setResponse(response);
-        setView('');
+        setResponse(response)
+        setView('')
     }
 
     switch(view){
@@ -71,8 +71,7 @@ export const View = () => {
                         {studentList.map((students) => {
                             return(
                                 <div key={students.sid} className="List">
-                                    <StudentList name={students.name} lastName={students.lastName} data={students} onClick={() => studentPage(students)}/>
-                                    <input className="CheckBox" type="checkbox"></input>
+                                    <StudentList name={students.name} lastName={students.lastName} sid={students.sid} onClick={() => studentPage(students)} present={students.present}/>
                                 </div>
                                 )
                         })}

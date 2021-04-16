@@ -10,8 +10,6 @@ export const View = () => {
     const [response, setResponse] = useState()
     const [studentList, setStudentList] = useState([])
     const [student, setStudent] = useState()
-
-    const [x, setX] = useState('')
     
     const URL = "http://localhost:8080/student/"
     

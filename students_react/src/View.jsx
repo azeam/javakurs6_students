@@ -14,15 +14,13 @@ export const View = () => {
     const URL = "http://localhost:8080/student/"
     
     useEffect(() => {
-        
         const fetchData = async () => { 
-            
             const response = await fetch(URL)
             const data = await response.json()
             setStudentList(data)
         }
         fetchData()
-    }, [response])
+    }, [response, student])
 
     const studentPage = (students) => {
 
@@ -33,19 +31,21 @@ export const View = () => {
 
     const CreatePage = () => {
 
-        // Enters the create vies
+        // Enters the create view
         setView('create')
     }
 
     const mainPage = (response) => {
-
+        
         // back to ListView
         setResponse(response)
         setView('')
     }
 
-    switch(view){
+    console.log("x")
 
+    switch(view){
+        
         case 'student':
             return(
                 <div>
@@ -71,9 +71,9 @@ export const View = () => {
                         {studentList.map((students) => {
                             return(
                                 <div key={students.sid} className="List">
-                                    <StudentList name={students.name} lastName={students.lastName} sid={students.sid} onClick={() => studentPage(students)} present={students.present}/>
+                                    <StudentList name={students.name} lastName={students.lastName} savePresent={mainPage} sid={students.sid} onClick={() => studentPage(students)} present={students.present}/>
                                 </div>
-                                )
+                            )
                         })}
                     </div>
                     <button className="Create" onClick={() => CreatePage()}>Create Student</button>

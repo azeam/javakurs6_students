@@ -24,8 +24,6 @@ export const CreateStudent = (props) => {
                 })
             })
             const student = await response.json()
-            const status = await response.status
-            console.log(status)
             props.btnSave(student)
         }
         fetchData()

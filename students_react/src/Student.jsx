@@ -46,7 +46,7 @@ export const Student = (props) => {
             <input className="From" type="text" id="age" name="age" onChange={e => setAge(e.target.value)} value={age}></input>
             <input className="CheckBox" type="checkbox" checked={isChecked} onChange={e => setIsChecked(e.target.checked)}></input>
             <label>Present</label>
-            <button className="From" onClick={editHandler}>Edit</button>
+            <button className="From" onClick={editHandler}>Save</button>
             <button className="From" onClick={deleteHandler}>Delete</button>
             <button className="From" onClick={props.onClick}>Back</button>
         </div>

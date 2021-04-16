@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 export const StudentList = (props) => {
 
     const name = props.name + " " + props.lastName
-    const [isChecked, setIsChecked] = useState(props.present)
+    const isChecked = props.present
 
     const updateCheck = () => {
-        setIsChecked(!isChecked);
         saveCheck();
     }
 
@@ -27,7 +26,7 @@ export const StudentList = (props) => {
             <div className="Studentx" onClick={props.onClick}>
                 <p>{name}</p>
             </div>
-            <input className="CheckBox" type="checkbox" checked={props.present} onChange={updateCheck} />
+            <input className="CheckBox" type="checkbox" checked={isChecked} onChange={updateCheck} />
         </div>
     )
 }

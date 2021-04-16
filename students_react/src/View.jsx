@@ -10,6 +10,8 @@ export const View = () => {
     const [response, setResponse] = useState()
     const [studentList, setStudentList] = useState([])
     const [student, setStudent] = useState()
+
+    const [x, setX] = useState('')
     
     const URL = "http://localhost:8080/student/"
     
@@ -22,10 +24,10 @@ export const View = () => {
         fetchData()
     }, [response, student])
 
-    const studentPage = (students) => {
+    const studentPage = (student) => {
 
         // Enters the Student view
-        setStudent(students)
+        setStudent(student)
         setView('student')
     }
 
@@ -41,8 +43,6 @@ export const View = () => {
         setResponse(response)
         setView('')
     }
-
-    console.log("x")
 
     switch(view){
         
@@ -68,10 +68,10 @@ export const View = () => {
                         <h4 className="Test">Present check</h4>
                     </div>
                     <div className="Students">
-                        {studentList.map((students) => {
+                        {studentList.map((student) => {
                             return(
-                                <div key={students.sid} className="List">
-                                    <StudentList name={students.name} lastName={students.lastName} savePresent={mainPage} sid={students.sid} onClick={() => studentPage(students)} present={students.present}/>
+                                <div key={student.sid} className="List">
+                                    <StudentList name={student.name} lastName={student.lastName} savePresent={mainPage} sid={student.sid} onClick={() => studentPage(student)} present={student.present}/>
                                 </div>
                             )
                         })}
